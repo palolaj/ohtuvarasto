@@ -19,15 +19,15 @@ jobs:
       - name: Install Poetry
         run: pip install poetry
       - name: Install dependencies
-        run:
-          poetry install
-          poetry add pylint --group dev
+        run: poetry install
+      - name: Add pylint
+        run: poetry add pylint --group dev
       - name: Run tests
         run: poetry run coverage run --branch -m pytest
       - name: Coverage report
-        run:
-          poetry run coverage xml
-          pylint src
+        run: poetry run coverage xml
+      - name: Checkers
+        run: pylint src
       - name: Coverage report to Codecov
         uses: codecov/codecov-action@v3
         env:
